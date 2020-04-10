@@ -6,8 +6,17 @@ screen_height = 600
 game_title = "temp"
 
 class MainGame(arcade.Window):
+    # constructors for both the derived and the parent classes
     def __init__(self, width, height, title)
         super().__init__(width, height, title)
+
+    # declaring the instance variables ---> maybe these are considered class variables?
+    left_choice_pressed = False
+    right_choice_pressed = False
+
+    level_background_list = None
+
+    mouse_cursor_sprite = None
 
     """all variable/sprites will be setup in the setup function"""
     def setup(self):
