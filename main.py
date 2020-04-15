@@ -16,6 +16,8 @@ class MainGame(arcade.Window):
     left_choice_pressed = False
     right_choice_pressed = False
 
+    current_background = None
+    menu_background = None
     level_background_list = None
 
     mouse_cursor_sprite = None
@@ -25,11 +27,14 @@ class MainGame(arcade.Window):
     def setup(self):
         self.mouse_cursor_sprite = arcade.Sprite("game_assets/Cursor1.png", center_x=300, center_y=300)
 
-    """all drawing of sprites and the game screen will be done in the on_draw function"""
+        self.menu_background = arcade.load_texture("game_backgrounds/menu_background_woods.jpg", width=600, height=600)
+        self.current_background = self.menu_background
 
+    """all drawing of sprites and the game screen will be done in the on_draw function"""
     def on_draw(self):
         arcade.start_render()
-        arcade.set_background_color(arcade.color.RED)
+        arcade.draw_texture_rectangle(screen_width / 2, screen_height/2, screen_width, screen_height,
+                                      self.current_background)
         self.mouse_cursor_sprite.draw()
 
     """game logic will be in the update function"""
