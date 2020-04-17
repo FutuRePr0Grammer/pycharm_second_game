@@ -27,6 +27,9 @@ class MainGame(arcade.Window):
     current_sound = None
     menu_sound = None
 
+    tick = None
+    timer = None
+
     """all variable/sprites will be setup in the setup function"""
     def setup(self):
         self.mouse_cursor_sprite = arcade.Sprite("game_assets/Cursor1.png", center_x=300, center_y=300)
@@ -37,9 +40,7 @@ class MainGame(arcade.Window):
         self.menu_sound = arcade.load_sound("game_sounds/menu_sound_woods_ambiance.mp3")
         self.current_sound = self.menu_sound
 
-    def play_song(self, song):
-        arcade.play_sound(song)
-        time.sleep(song.get_length())
+        self.tick = 2
 
     """all drawing of sprites and the game screen will be done in the on_draw function"""
     def on_draw(self):
@@ -48,10 +49,9 @@ class MainGame(arcade.Window):
                                       self.current_background)
         self.mouse_cursor_sprite.draw()
 
-        # arcade.play_sound(self.current_sound)
-        # arcade.pause(self.current_sound.get_length())
-        # time.sleep(self.current_sound.get_length())
-        self.play_song(self.current_sound)
+        if self.tick > 1:
+            arcade.play_sound(self.current_sound)
+            self.tick -= 1
 
     """game logic will be in the update function"""
     def update(self, delta_time):
