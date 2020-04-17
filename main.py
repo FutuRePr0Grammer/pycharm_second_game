@@ -1,6 +1,7 @@
 import arcade
 import time
-# TODO: fix sound, find a way to keep it from playing over itself
+# TODO: find a way to draw xcf play button and possibly make it fade in. might have to use draw_lrwh_rectangle_textured
+#  function and alpha for fade_in and drawing of the xcf play_button
 
 # global variables
 screen_width = 600
@@ -34,7 +35,7 @@ class MainGame(arcade.Window):
     """all variable/sprites will be setup in the setup function"""
     def setup(self):
         self.mouse_cursor_sprite = arcade.Sprite("game_assets/Cursor1.png", center_x=300, center_y=300)
-        self.play_button = arcade.Sprite("game_assets/play_button.png", center_x=300, center_y=500, scale=0.3)
+        self.play_button = arcade.Sprite("game_assets/play_button.jpg", center_x=300, center_y=500, scale=0.3)
 
         self.menu_background = arcade.load_texture("game_backgrounds/menu_background_woods.jpg", width=600, height=600)
         self.current_background = self.menu_background
