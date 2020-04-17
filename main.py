@@ -23,6 +23,7 @@ class MainGame(arcade.Window):
     level_background_list = None
 
     mouse_cursor_sprite = None
+    play_button = None
 
     current_sound = None
     menu_sound = None
@@ -33,6 +34,7 @@ class MainGame(arcade.Window):
     """all variable/sprites will be setup in the setup function"""
     def setup(self):
         self.mouse_cursor_sprite = arcade.Sprite("game_assets/Cursor1.png", center_x=300, center_y=300)
+        self.play_button = arcade.Sprite("game_assets/play_button.png", center_x=300, center_y=500, scale=0.3)
 
         self.menu_background = arcade.load_texture("game_backgrounds/menu_background_woods.jpg", width=600, height=600)
         self.current_background = self.menu_background
@@ -45,13 +47,16 @@ class MainGame(arcade.Window):
     """all drawing of sprites and the game screen will be done in the on_draw function"""
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_texture_rectangle(screen_width / 2, screen_height/2, screen_width, screen_height,
-                                      self.current_background)
-        self.mouse_cursor_sprite.draw()
 
-        if self.tick > 1:
-            arcade.play_sound(self.current_sound)
-            self.tick -= 1
+        if self.current_background == self.menu_background:
+            arcade.draw_texture_rectangle(screen_width / 2, screen_height/2, screen_width, screen_height,
+                                          self.current_background)
+            self.play_button.draw()
+            if self.tick > 1:
+                arcade.play_sound(self.current_sound)
+                self.tick -= 1
+
+        self.mouse_cursor_sprite.draw()
 
     """game logic will be in the update function"""
     def update(self, delta_time):
